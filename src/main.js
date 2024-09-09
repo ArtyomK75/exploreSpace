@@ -3,7 +3,6 @@ import router from "@/router/index.js";
 
 import { createApp } from 'vue';
 import App from './App.vue';
-import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'vuetify/styles';
@@ -11,7 +10,7 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import '@mdi/font/css/materialdesignicons.css';
 
 import { createPinia } from 'pinia';
 
@@ -24,17 +23,19 @@ import { getFirestore } from "firebase/firestore";
 
 import { globalMixin } from '@/mixin/globalMixin.js'
 
+export const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY;
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDwTnZO6buLNH1lQ3D2L1jsNFB99iRy5MI",
-    authDomain: "explore-space-4bb6a.firebaseapp.com",
-    projectId: "explore-space-4bb6a",
-    storageBucket: "explore-space-4bb6a.appspot.com",
-    messagingSenderId: "974690476588",
-    appId: "1:974690476588:web:ce8632abd0cbecbaa46789"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
@@ -53,9 +54,6 @@ export const DEPT_OF_DAYS = 30;
 const vuetify = createVuetify ({
     components,
     directives,
-    // icons: {
-    //     iconfont: 'mdi', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
-    // }
     icons: {
         defaultSet: 'mdi',
         aliases,
@@ -64,19 +62,6 @@ const vuetify = createVuetify ({
         },
     },
 });
-
-export default vuetify;
-
-// export default createVuetify({
-//     icons: {
-//         defaultSet: 'mdi',
-//         aliases,
-//         sets: {
-//             mdi,
-//         },
-//     },
-// })
-
 
 const pinia = createPinia();
 
@@ -97,6 +82,3 @@ app.directive('tooltipActivate',{
 })
 
 app.mount('#app');
-
-// const myGlobalStore = useGlobalStore();
-// myGlobalStore.readCookies();

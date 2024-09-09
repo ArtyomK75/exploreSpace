@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 import axiosInstance from "@/../services/axios.js";
-import useGlobalStore from "@/store/globalStore.js";
-import {DEPT_OF_DAYS} from "@/main.js";
+import {DEPT_OF_DAYS, NASA_API_KEY} from "@/main.js";
 
 export const useNasaDataStore = defineStore('nasaDataStore', {
     state: () => ({
@@ -16,7 +15,7 @@ export const useNasaDataStore = defineStore('nasaDataStore', {
         async getPictures() {
             let lDate= new Date();
             lDate.setDate(lDate.getDate() - this.quantityDaysStore);
-            const url = `/apod?api_key=${useGlobalStore().getApiKey}&start_date=${getFormatedDate(lDate)}`;
+            const url = `/apod?api_key=${NASA_API_KEY}&start_date=${getFormatedDate(lDate)}`;
             try {
                 const response = await axiosInstance.get(url);
                 this.picturesState = response.data;

@@ -2,7 +2,6 @@ import {defineStore} from "pinia";
 
 export const useGlobalStore = defineStore('globalStore', {
     state: () => ({
-        nasaAPIKeyState: 'VXpW95518Nge2DapthZAFWSNN75Q8D2nqNJyl8qi',
         currentUserState: null,
         isLoggedInState: false,
         userEmailStore: '',
